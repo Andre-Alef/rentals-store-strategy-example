@@ -17,6 +17,8 @@ export class RentalsController {
   @ApiQuery({ name: 'customerId', required: true })
   @ApiQuery({ name: 'vehicleType', enum: ['CAR', 'MOTORCYCLE', 'E_BIKE'], required: true })
   @ApiResponse({ status: 200, description: 'Available vehicles' })
+  @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 404, description: 'Customer not found' })
   async getAvailableVehiclesLegacy(@Query() dto: GetAvailableVehiclesDto) {
     return this.rentalsService.getAvailableVehicles(dto.customerId, dto.vehicleType);
   }
@@ -26,6 +28,8 @@ export class RentalsController {
   @ApiQuery({ name: 'customerId', required: true })
   @ApiQuery({ name: 'vehicleType', enum: ['CAR', 'MOTORCYCLE', 'E_BIKE'], required: true })
   @ApiResponse({ status: 200, description: 'Available vehicles' })
+  @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 404, description: 'Customer not found' })
   async getAvailableVehicles(@Query() dto: GetAvailableVehiclesDto) {
     return this.rentalsServiceStrategy.getAvailableVehicles(dto.customerId, dto.vehicleType);
   }
